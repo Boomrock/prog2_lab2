@@ -11,9 +11,13 @@ namespace prog2_lab2
 {
     class GameImage : INotifyPropertyChanged
     {
-        private BitmapImage Image;
-        private bool isСhosen;
 
+        private BitmapImage image;
+        private bool isСhosen;
+        public GameImage(BitmapImage image)
+        {
+            this.image = image;
+        }
         public bool IsСhosen
         {
             get
@@ -27,7 +31,8 @@ namespace prog2_lab2
             }
         }
 
-        
+        public BitmapImage Image { get => image;}
+
         public event PropertyChangedEventHandler PropertyChanged;
         //Метод, который скажет ViewModel, что нужно передать виду новые данные
         public void OnPropertyChanged([CallerMemberName] string prop = "")
