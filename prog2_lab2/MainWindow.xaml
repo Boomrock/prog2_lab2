@@ -5,18 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:prog2_lab2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="400">
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <StackPanel Margin="5">
+                <Image Width="100" Height="75" Source="{Binding Path=ImagePath}" />
+                <TextBlock FontSize="16" Text="{Binding Path=Title}" HorizontalAlignment="Center" />
+                <TextBlock FontSize="16" Text="{Binding Path=Company}" HorizontalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="listPanelTemplate">
+            <WrapPanel />
+        </ItemsPanelTemplate>
+    </Window.Resources>
     <Grid>
-        <Border Padding="5">
-            <ListBox ItemsSource="{Binding Images}" SelectedItem="{Binding SelectedImages}" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <Image Source="{Binding Image}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
+        <ListBox x:Name="phonesList"
+                 ItemTemplate="{StaticResource listTemplate}"
+                 ItemsPanel="{StaticResource listPanelTemplate}"
+                 SelectionChanged="phonesList_SelectionChanged"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
     </Grid>
 </Window>
