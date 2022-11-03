@@ -1,26 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using prog2_lab2.command;
+using prog2_lab2.models;
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace prog2_lab2.viewModel
 {
-    class AppViewModel
+    class AppViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<GameImage> images;
-        public GameImage SelectedImages;
+       
+        private ObservableCollection<BitmapImage> images;
+        public Game game;
 
-        public ObservableCollection<GameImage> Images { get => images; set => images = value; }
+        public ObservableCollection<BitmapImage> Images { get => images; set => images = value; }
 
         public AppViewModel()
         {
-            Images = new ObservableCollection<GameImage>()
-            {
-                new GameImage( new BitmapImage(new Uri($"C:\\Users\\федор\\Downloads\\ismail-inceoglu-gifts-of-the-immensity.jpg")))
-            };
+            game = new Game(Loader.LoadImageFrom($"./Images"));
+            Images = game.Start();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        //Метод, который скажет ViewModel, что нужно передать виду новые данные
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
