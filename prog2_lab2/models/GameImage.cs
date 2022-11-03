@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace prog2_lab2
@@ -13,10 +14,23 @@ namespace prog2_lab2
     {
 
         private BitmapImage image;
+        
+        private string color;
         private bool isСhosen;
-        public GameImage(BitmapImage image)
+
+
+
+        public string Color
         {
-            this.image = image;
+            get
+            {
+                return color;
+            }
+            set
+            {
+                color = value;
+                OnPropertyChanged("Color");
+            }
         }
         public bool IsСhosen
         {
@@ -26,12 +40,24 @@ namespace prog2_lab2
             }
             set
             {
-                this.isСhosen = IsСhosen;
-                OnPropertyChanged("isСhosen");
+                this.isСhosen = value;
+                OnPropertyChanged("IsСhosen");
             }
         }
+        public BitmapImage Image { get => image; }
 
-        public BitmapImage Image { get => image;}
+
+
+        public GameImage(BitmapImage Image)
+        {
+            this.image = Image;
+            this.isСhosen = false;
+            this.color = "Black";
+
+        }
+      
+
+      
 
         public event PropertyChangedEventHandler PropertyChanged;
         //Метод, который скажет ViewModel, что нужно передать виду новые данные

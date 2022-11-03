@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="400">
     <Window.Resources>
-        <DataTemplate x:Key="listTemplate">
+        <DataTemplate x:Key="listTemplate" >
             <StackPanel Margin="5">
-                <Image Width="100" Height="75" Source="{Binding Path=ImagePath}" />
-                <TextBlock FontSize="16" Text="{Binding Path=Title}" HorizontalAlignment="Center" />
-                <TextBlock FontSize="16" Text="{Binding Path=Company}" HorizontalAlignment="Center" />
+                <Border BorderThickness="5" BorderBrush="{Binding Color}"  VerticalAlignment="Top">
+                    <Image Height="750"  Source="{Binding Image}"/>
+                </Border>
             </StackPanel>
         </DataTemplate>
         <ItemsPanelTemplate x:Key="listPanelTemplate">
@@ -19,10 +19,11 @@
         </ItemsPanelTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="phonesList"
+        <ListBox x:Name="ImageList"
                  ItemTemplate="{StaticResource listTemplate}"
+                 ItemsSource="{Binding Images}"
                  ItemsPanel="{StaticResource listPanelTemplate}"
-                 SelectionChanged="phonesList_SelectionChanged"
+                 SelectedItem="{Binding SelectedImages}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
     </Grid>
 </Window>
