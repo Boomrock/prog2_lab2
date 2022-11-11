@@ -23,7 +23,7 @@
         
         <ListBox x:Name="ImageList"
                  ItemTemplate="{StaticResource listTemplate}"
-                 ItemsSource="{Binding Path =  GameImages}"
+                 ItemsSource="{Binding Images}"
                  ItemsPanel="{StaticResource listPanelTemplate}"
                  SelectedItem="{Binding SelectedImage}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" />

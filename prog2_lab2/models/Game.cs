@@ -10,19 +10,22 @@ namespace prog2_lab2.models
 {
     class Game
     {
-        List<GameImage> gameImages; 
+        List<GameImage> gameImages;
+        public bool IsMixed; 
         public Game(List<BitmapImage> bitmapImages)
         {
-            gameImages.Clear();
+            gameImages = new List<GameImage>();
             foreach (BitmapImage item in bitmapImages)
             {
                 gameImages.Add(new GameImage(item));
             }
+            IsMixed = false; 
         }
         public List<GameImage> Start()
         {
             Random random = new Random();
             List<GameImage> images = new List<GameImage>();
+
             foreach (GameImage item in gameImages)
             {
                 item.IsСhosen = false;
@@ -31,11 +34,20 @@ namespace prog2_lab2.models
                     images.Add(item);
                     item.IsСhosen = true;
                 }
+                if (images.Count > 50) break;
+
             }
+            ArrayMethods<GameImage>.Shuffle(images);
+            IsMixed = false; 
             return images;
         }
         public List<GameImage> Mix(List<GameImage> images)
         {
+            if(IsMixed)
+                return images;
+            if (images == null)
+                throw new ArgumentNullException(nameof(images));
+
             Random random = new Random();
             List<GameImage> newlistImages = new List<GameImage>();
             foreach (GameImage image in images)
@@ -49,10 +61,12 @@ namespace prog2_lab2.models
                     }
                 }
                 newlistImages.Add(image);
+                if (newlistImages.Count > 50) break;
 
             }
-            return images;
+            IsMixed = true; 
+            ArrayMethods<GameImage>.Shuffle(images);
+            return newlistImages;
         }
-
     }
 }

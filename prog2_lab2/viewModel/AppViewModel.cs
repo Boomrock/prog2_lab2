@@ -23,17 +23,14 @@ namespace prog2_lab2.viewModel
         public void start()
         {
 
-            Game.Start();
-            OnPropertyChanged("Game");
+            Images = Game.Start();
 
 
         }
         public void mix()
         {
-
-            Game.Mix();
-            OnPropertyChanged("Game");
-
+            if(images != null)
+                Images = Game.Mix(Images);
         }
         #endregion
         #region Property
@@ -46,7 +43,6 @@ namespace prog2_lab2.viewModel
             set
             {
                 game = value;
-                OnPropertyChanged("Game.GameImages");
             }
         }
         public GameImage SelectedImage
@@ -54,13 +50,14 @@ namespace prog2_lab2.viewModel
             get
             {
                 return selectedImage;
+
             }
             set
             {
                 selectedImage = value;
                 if (Game.IsMixed)
                 {
-                    Game.isImageSelected(SelectedImage.Image);
+                    selectedImage.IsSelected = true;
                     OnPropertyChanged("SelectedImage");
                 }
 
@@ -72,6 +69,7 @@ namespace prog2_lab2.viewModel
             get
             {
                 return images;
+
             }
             set
             {
