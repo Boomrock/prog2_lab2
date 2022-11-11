@@ -27,14 +27,9 @@ namespace prog2_lab2
             set
             {
                 isSelected = value;
-                if (value && isСhosen)
-                {
-                    Color = "Green";
-                }
-                else if(value && !isСhosen)
-                {
-                    Color = "Red";
-                }
+                OnPropertyChanged("Color");
+                OnPropertyChanged("isSelected");
+
             }
         }
 
@@ -44,11 +39,23 @@ namespace prog2_lab2
         {
             get
             {
-                return color;
+
+                if (isSelected && isСhosen)
+                {
+                    return "Green";
+                }
+                else if (isSelected && !isСhosen)
+                {
+
+                    return "Red";
+                }
+                return "Black";
+               
             }
             set
             {
                 color = value;
+               
                 OnPropertyChanged("Color");
             }
         }
