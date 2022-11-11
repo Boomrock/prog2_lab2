@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:prog2_lab2"
+
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="400">
     <Window.Resources>
         <DataTemplate x:Key="listTemplate" >
             <StackPanel Margin="5">
                 <Border BorderThickness="5" BorderBrush="{Binding Color}"  VerticalAlignment="Top">
-                    <Image Height="750"  Source="{Binding Image}"/>
+                    <Image Width="50" Source="{Binding Image}"/>
                 </Border>
             </StackPanel>
         </DataTemplate>
@@ -19,11 +20,18 @@
         </ItemsPanelTemplate>
     </Window.Resources>
     <Grid>
+        
         <ListBox x:Name="ImageList"
                  ItemTemplate="{StaticResource listTemplate}"
-                 ItemsSource="{Binding Images}"
+                 ItemsSource="{Binding Path =  GameImages}"
                  ItemsPanel="{StaticResource listPanelTemplate}"
-                 SelectedItem="{Binding SelectedImages}"
+                 SelectedItem="{Binding SelectedImage}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+        <Button x:Name="Button" Height="32" VerticalAlignment="Bottom" Margin="296,0,10,10" Command="{Binding Start}">
+            Start
+        </Button>
+        <Button x:Name="s" Height="32" VerticalAlignment="Bottom" Margin="186,0,120,10" Command="{Binding Mix}" RenderTransformOrigin="-0.326,0.438">
+            mix
+        </Button>
     </Grid>
 </Window>

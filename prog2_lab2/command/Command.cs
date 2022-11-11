@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace prog2_lab2.command
 {
-    class StartCommand : ICommand
+    class Command : ICommand
     {
         private Action _execute;
         public event EventHandler CanExecuteChanged;
         
-        public StartCommand( Action execute )
+        public Command( Action execute )
         {
             _execute = execute;
         }
