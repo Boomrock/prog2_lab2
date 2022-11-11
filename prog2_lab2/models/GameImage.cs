@@ -17,6 +17,26 @@ namespace prog2_lab2
         
         private string color;
         private bool isСhosen;
+        private bool isSelected;
+        public bool IsSelected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+                if (value && isСhosen)
+                {
+                    Color = "Green";
+                }
+                else if(value && !isСhosen)
+                {
+                    Color = "Red";
+                }
+            }
+        }
 
 
 

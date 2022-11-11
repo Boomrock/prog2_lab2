@@ -55,7 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="command\StartCommand.cs" />
+    <Compile Include="command\Command.cs" />
+    <Compile Include="models\ArrayMethods .cs" />
     <Compile Include="models\Game.cs" />
     <Compile Include="models\Loader.cs" />
     <Compile Include="viewModel\AppViewModel.cs" />

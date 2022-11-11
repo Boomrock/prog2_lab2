@@ -14,7 +14,7 @@ namespace prog2_lab2.models
             foreach (var file in directoryInfo.GetFiles()) //проходим по файлам
             {
                 //получаем расширение файла и проверяем подходит ли оно нам 
-                if (Path.GetExtension(file.FullName) == "jpg" || Path.GetExtension(file.FullName) == "png")
+                if (file.Extension == ".jpg" || file.Extension == ".png")
                     Images.Add(new BitmapImage(new Uri(file.FullName))); //если расширение подошло, создаём Bitmap
             }
             return Images;
